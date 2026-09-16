@@ -1,6 +1,98 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Gerador de Descrições IA para Anúncios | Praia Digital</title><meta name="description" content="Crie títulos e descrições otimizadas para imóveis no litoral: Airbnb, Booking, VRBO e portais imobiliários."><link rel="canonical" href="https://praia.digital/gerador-descricoes/"><style>body{font-family:system-ui,-apple-system,sans-serif;margin:0;background:#fdf2f8;color:#500724;line-height:1.6}nav{background:#9d174d;padding:12px 20px;display:flex;gap:14px;flex-wrap:wrap}nav a{color:#fce7f3;text-decoration:none;font-weight:650}.hero{background:linear-gradient(135deg,#9d174d,#ec4899);color:#fff;padding:58px 20px;text-align:center}.container{max-width:980px;margin:auto;padding:30px 20px}.card{background:#fff;border-radius:14px;padding:24px;margin:16px 0;box-shadow:0 4px 14px #0001}label{display:block;margin:12px 0 5px;font-weight:700}input,select,textarea{width:100%;padding:11px;border:1px solid #f9a8d4;border-radius:8px;box-sizing:border-box}button,.cta{display:inline-block;background:#db2777;color:#fff;border:0;padding:13px 24px;border-radius:9px;font-weight:800;text-decoration:none;cursor:pointer;margin-top:14px}textarea{min-height:190px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}footer{text-align:center;padding:24px;color:#78716c}</style></head><body>
-<nav><a href="https://praia.digital/">🌊 Praia Digital</a><a href="https://praia.digital/apps/">Rede de Apps</a><a href="https://praia.digital/area-anfitriao/">Área do Anfitrião</a><a href="https://praia.digital/hermes-agents/">Hermes Agents</a><a href="https://praia.digital/portal-corretores/">Portal do Corretor</a></nav>
-<header class="hero"><h1>✍️ Gerador de Descrições para Anúncios</h1><p>Copywriting de alta conversão para Airbnb, Booking, VRBO e portais imobiliários.</p><a class="cta" href="https://praia.digital/assets/servico-geracao-descricoes-anuncios-ia.html">Contratar serviço completo — R$ 497</a></header>
-<main class="container"><section class="card"><div class="grid"><div><label>Tipo de imóvel</label><select id="tipo"><option>Apartamento</option><option>Casa</option><option>Kitnet / Studio</option><option>Pousada / Chalé</option><option>Cobertura</option></select></div><div><label>Cidade</label><input id="cidade" value="Praia Grande"></div><div><label>Quartos</label><select id="quartos"><option>1</option><option selected>2</option><option>3</option><option>4+</option></select></div><div><label>Plataforma</label><select id="plataforma"><option>Airbnb</option><option>Booking</option><option>VRBO</option><option>Portal imobiliário</option></select></div></div><label>Diferenciais</label><input id="difs" value="vista para o mar, Wi-Fi, ar-condicionado, perto da praia"><label>Público ideal</label><select id="publico"><option>Famílias</option><option>Casais</option><option>Investidores</option><option>Grupos de amigos</option><option>Trabalho remoto</option></select><button onclick="gerar()">🤖 Gerar anúncio</button></section><section class="card"><h2>Anúncio gerado</h2><label>Título otimizado</label><input id="titulo" readonly><label>Descrição</label><textarea id="descricao" readonly></textarea><button onclick="navigator.clipboard.writeText(document.getElementById('titulo').value+'\n\n'+document.getElementById('descricao').value)">📋 Copiar anúncio</button></section><section class="card"><h2>Serviço profissional Praia Digital</h2><p>O serviço completo inclui seleção de fotos, título magnético, descrição completa, precificação dinâmica, regras da casa, sincronização Airbnb ↔ Booking e 30 dias de suporte por WhatsApp.</p><p><strong>R$ 497 via PIX</strong> · entrega em 10 dias úteis · 1 revisão inclusa.</p><a class="cta" href="mailto:comercial@praia.digital?subject=Contrata%C3%A7%C3%A3o:%20Cria%C3%A7%C3%A3o%20de%20An%C3%BAncio%20Airbnb/Booking">Contratar por e-mail</a> <a class="cta" href="https://praia.digital/area-anfitriao/">Cadastrar imóvel para gestão</a></section></main><footer>Parte da rede <a href="https://praia.digital/">praia.digital</a> · Ferramentas IA para imóveis no litoral</footer><script>function gerar(){const tipo=document.getElementById('tipo').value,cidade=document.getElementById('cidade').value,q=document.getElementById('quartos').value,p=document.getElementById('plataforma').value,d=document.getElementById('difs').value,pub=document.getElementById('publico').value;document.getElementById('titulo').value=`${tipo} ${q} quartos em ${cidade} | ${d.split(',')[0]} | ideal para ${pub.toLowerCase()}`.slice(0,60);document.getElementById('descricao').value=`Bem-vindo(a) a este ${tipo.toLowerCase()} em ${cidade}, pensado para ${pub.toLowerCase()} que buscam conforto, praticidade e uma excelente experiência no litoral.\n\nO imóvel possui ${q} quarto(s) e diferenciais como ${d}. A localização facilita o acesso à praia, ao comércio local e aos principais pontos da cidade.\n\nIdeal para reservas no ${p}, com comunicação ágil, orientações claras de check-in e estrutura para uma estadia tranquila. Reserve suas datas e aproveite o melhor de ${cidade}.`}</script></body></html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gerador de Descrições de Anúncios — Praia Digital</title>
+<meta name="description" content="Crie descrições de anúncios imobiliários otimizadas para Airbnb, Booking e portais em segundos.">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,sans-serif}
+  body{background:#f0f9ff;color:#0f172a;min-height:100vh}
+  header{background:linear-gradient(135deg,#0077B6,#00B4D8);color:#fff;padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+  header a{color:#fff;text-decoration:none;font-weight:700}.logo{font-size:1.2rem}
+  main{max-width:760px;margin:2rem auto;padding:0 1rem}
+  .card{background:#fff;border-radius:16px;padding:1.75rem;box-shadow:0 4px 24px rgba(0,60,100,.08)}
+  h1{font-size:1.5rem;color:#0077B6}.sub{color:#64748b;margin:.3rem 0 1.2rem;font-size:.95rem}
+  label{display:block;font-weight:600;font-size:.85rem;margin:.9rem 0 .3rem}
+  input,select{width:100%;padding:.7rem;border:1px solid #cbd5e1;border-radius:10px;font-size:1rem}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}
+  @media(max-width:600px){.grid{grid-template-columns:1fr}}
+  .checks{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem}
+  .chk{background:#f1f5f9;border-radius:999px;padding:.4rem .85rem;font-size:.85rem;cursor:pointer;display:flex;gap:.35rem;align-items:center}
+  .chk input{width:auto}
+  button.calc{width:100%;margin-top:1.3rem;padding:.9rem;border:0;border-radius:12px;background:#0077B6;color:#fff;font-weight:800;font-size:1rem;cursor:pointer}
+  .out{margin-top:1.2rem;background:#f8fafc;border:1px solid #cbd5e1;border-radius:12px;padding:1.25rem;display:none;white-space:pre-wrap;line-height:1.7;font-size:.95rem}
+  .copy{margin-top:.75rem;padding:.6rem 1rem;border:1px solid #0077B6;background:#fff;color:#0077B6;border-radius:10px;font-weight:700;cursor:pointer}
+  footer{background:#023047;color:#cbd5e1;padding:2rem 1.5rem;margin-top:2rem}
+  footer h4{color:#fff;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.8rem}
+  .links{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem}.links a{color:#90E0EF;text-decoration:none;font-size:.85rem}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="https://praia.digital/">🏖️ Praia Digital</a>
+  <a href="https://praia.digital/apps">← Todos os apps</a>
+</header>
+<main>
+  <div class="card">
+    <h1>Gerador de Descrições de Anúncios</h1>
+    <p class="sub">Preencha e receba um anúncio pronto para Airbnb, Booking e portais imobiliários.</p>
+    <div class="grid">
+      <div><label>Tipo de imóvel</label>
+        <select id="tipo"><option>Apartamento</option><option>Casa</option><option>Cobertura</option><option>Studio</option><option>Pousada</option><option>Terreno</option></select></div>
+      <div><label>Cidade</label>
+        <select id="cidade"><option>Santos</option><option>Guarujá</option><option>Praia Grande</option><option>São Vicente</option><option>Bertioga</option><option>Mongaguá</option><option>Itanhaém</option><option>Peruíbe</option></select></div>
+      <div><label>Quartos</label><input type="number" id="quartos" value="2" min="0"></div>
+      <div><label>Distância da praia</label>
+        <select id="praia"><option>frente para o mar</option><option>a 1 quadra da praia</option><option>a poucos minutos da praia</option><option>em condomínio fechado</option></select></div>
+    </div>
+    <label>Diferenciais</label>
+    <div class="checks">
+      <label class="chk"><input type="checkbox" value="vista para o mar" checked> Vista mar</label>
+      <label class="chk"><input type="checkbox" value="piscina"> Piscina</label>
+      <label class="chk"><input type="checkbox" value="churrasqueira"> Churrasqueira</label>
+      <label class="chk"><input type="checkbox" value="ar-condicionado"> Ar-condicionado</label>
+      <label class="chk"><input type="checkbox" value="Wi-Fi de alta velocidade"> Wi-Fi</label>
+      <label class="chk"><input type="checkbox" value="vaga de garagem"> Garagem</label>
+      <label class="chk"><input type="checkbox" value="aceita pets"> Pets</label>
+      <label class="chk"><input type="checkbox" value="mobiliado e equipado"> Mobiliado</label>
+    </div>
+    <button class="calc" onclick="gerar()">Gerar anúncio</button>
+    <div class="out" id="out"></div>
+    <button class="copy" id="copyBtn" style="display:none" onclick="copiar()">📋 Copiar texto</button>
+  </div>
+</main>
+<footer>
+  <h4>Rede de apps Praia Digital</h4>
+  <div class="links">
+    <a href="https://praia.digital/ferramentas">Kit do Anfitrião</a>
+    <a href="https://praia.digital/area-anfitriao">Área do Anfitrião</a>
+    <a href="https://praia.digital/avaliador-imoveis">Avaliador IA</a>
+    <a href="https://praia.digital/calculadoras">Calculadoras</a>
+    <a href="https://praia.digital/portal-corretores">Portal do Corretor</a>
+    <a href="https://praia.digital/blog-litoral">Blog</a>
+    <a href="https://praia.digital/guia-litoral">Guia do Litoral</a>
+  </div>
+</footer>
+<script>
+function gerar(){
+  var tipo=document.getElementById('tipo').value, cid=document.getElementById('cidade').value;
+  var q=document.getElementById('quartos').value, p=document.getElementById('praia').value;
+  var difs=[].slice.call(document.querySelectorAll('.checks input:checked')).map(function(c){return c.value});
+  var qtxt=q==='0'?'':(q+' quarto'+(q>1?'s':''));
+  var txt='🌊 '+tipo.toUpperCase()+' EM '+cid.toUpperCase()+' — '+p.toUpperCase()+'\n\n';
+  txt+='Apresentamos este(a) '+tipo.toLowerCase()+(qtxt?' com '+qtxt:'')+', '+p+', em '+cid+'. ';
+  txt+='Perfeito para quem busca conforto, localização e a melhor experiência no litoral paulista.\n\n';
+  if(difs.length){txt+='✨ DIFERENCIAIS\n';difs.forEach(function(d){txt+='✔ '+d.charAt(0).toUpperCase()+d.slice(1)+'\n'});txt+='\n';}
+  txt+='📍 LOCALIZAÇÃO\n'+cid+' oferece praias paradisíacas, gastronomia à beira-mar e infraestrutura completa para temporada ou moradia.\n\n';
+  txt+='📞 Agende sua visita ou reserve agora pelo WhatsApp. Imóvel verificado pela equipe Praia Digital.';
+  var o=document.getElementById('out');o.textContent=txt;o.style.display='block';
+  document.getElementById('copyBtn').style.display='inline-block';
+}
+function copiar(){
+  navigator.clipboard.writeText(document.getElementById('out').textContent);
+  document.getElementById('copyBtn').textContent='✅ Copiado!';
+}
+</script>
+</body>
+</html>
