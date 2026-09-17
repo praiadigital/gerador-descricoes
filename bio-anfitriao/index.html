@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gerador de Bio de Anfitrião — Praia Digital</title>
+<meta name="description" content="Crie uma bio de perfil que transmite confiança no Airbnb, Booking e redes sociais.">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,sans-serif}
+  body{background:#f0f9ff;color:#0f172a;min-height:100vh}
+  header{background:linear-gradient(135deg,#0077B6,#00B4D8);color:#fff;padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+  header a{color:#fff;text-decoration:none;font-weight:700}.logo{font-size:1.2rem}
+  main{max-width:660px;margin:2rem auto;padding:0 1rem}
+  .card{background:#fff;border-radius:16px;padding:1.75rem;box-shadow:0 4px 24px rgba(0,60,100,.08)}
+  h1{font-size:1.5rem;color:#0077B6}.sub{color:#64748b;margin:.3rem 0 1.2rem;font-size:.95rem}
+  label{display:block;font-weight:600;font-size:.85rem;margin:.9rem 0 .3rem}
+  input,select{width:100%;padding:.7rem;border:1px solid #cbd5e1;border-radius:10px;font-size:1rem}
+  button{width:100%;margin-top:1.3rem;padding:.9rem;border:0;border-radius:12px;background:#0077B6;color:#fff;font-weight:800;font-size:1rem;cursor:pointer}
+  .bio{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:1rem;margin-top:.8rem;font-size:.95rem;line-height:1.7;display:none;white-space:pre-wrap}
+  .copy{margin-top:.5rem;padding:.5rem 1rem;border:1px solid #0077B6;background:#fff;color:#0077B6;border-radius:10px;font-weight:700;cursor:pointer;display:none}
+  .dica{margin-top:1.2rem;background:#ecfeff;border:1px solid #67e8f9;border-radius:12px;padding:1rem;font-size:.9rem}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="https://praia.digital/">🏖️ Praia Digital</a>
+  <a href="https://praia.digital/gerador-descricoes">← Gerador de Descrições</a>
+</header>
+<main>
+  <div class="card">
+    <h1>👤 Bio de Anfitrião que Converte</h1>
+    <p class="sub">Perfis com bio completa recebem até 30% mais reservas.</p>
+    <label>Seu nome</label><input id="nome" value="Ana">
+    <label>Cidade onde hospeda</label><input id="cidade" value="Praia Grande">
+    <label>Seu estilo</label>
+    <select id="estilo">
+      <option value="familia">Família — acolhedor e cuidadoso</option>
+      <option value="pro">Profissional — gestão completa e ágil</option>
+      <option value="local">Local — dicas de quem conhece cada canto</option>
+    </select>
+    <button onclick="gerar()">Gerar bio</button>
+    <div class="bio" id="out"></div>
+    <button class="copy" id="cp" onclick="navigator.clipboard.writeText(document.getElementById('out').textContent);this.textContent='✅ Copiado!'">📋 Copiar bio</button>
+    <div class="dica">✒️ Anúncio completo no <a href="https://praia.digital/gerador-descricoes" style="color:#0077B6;font-weight:700">Gerador de Descrições</a> · Títulos no <a href="https://praia.digital/gerador-descricoes/titulos-anuncio/" style="color:#0077B6;font-weight:700">Gerador de Títulos</a></div>
+  </div>
+</main>
+<script>
+function gerar(){
+  var n=document.getElementById('nome').value, c=document.getElementById('cidade').value, e=document.getElementById('estilo').value, txt;
+  if(e==='familia') txt='Olá! Sou '+n+' 👋\n\nRecebemos hóspedes em '+c+' como recebemos família: com carinho, limpeza impecável e tudo pronto para você só se preocupar em curtir a praia.\n\nNosso cantinho é pensado para famílias — seguro, confortável e pertinho do mar. Qualquer dúvida, respondo rapidinho!\n\nSerá um prazer hospedar você. 🌊';
+  else if(e==='pro') txt=n+' | Hospedagem profissional em '+c+'\n\nGestão completa: check-in autônomo, suporte rápido e imóveis verificados. Resposta em minutos, não horas.\n\nReserve com tranquilidade — sua estadia é nossa prioridade. 🏖️';
+  else txt='E aí! Sou '+n+', morador(a) de '+c+' desde sempre. 🌊\n\nAlém do imóvel, você ganha um guia local de verdade: as melhores praias, onde comer bem e barato, e os cantos que só quem é daqui conhece.\n\nVem viver '+c+' como um local!';
+  document.getElementById('out').textContent=txt;
+  document.getElementById('out').style.display='block';
+  document.getElementById('cp').style.display='inline-block';
+}
+</script>
+</body>
+</html>
