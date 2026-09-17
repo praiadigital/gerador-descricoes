@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anúncio Multi-Portal — Praia Digital</title>
+<meta name="description" content="Um formulário, três versões: Airbnb, OLX/ZAP e WhatsApp — cada portal tem seu formato ideal.">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,sans-serif}
+  body{background:#f0f9ff;color:#0f172a;min-height:100vh}
+  header{background:linear-gradient(135deg,#0077B6,#00B4D8);color:#fff;padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+  header a{color:#fff;text-decoration:none;font-weight:700}.logo{font-size:1.2rem}
+  main{max-width:720px;margin:2rem auto;padding:0 1rem}
+  .card{background:#fff;border-radius:16px;padding:1.75rem;box-shadow:0 4px 24px rgba(0,60,100,.08)}
+  h1{font-size:1.5rem;color:#0077B6}.sub{color:#64748b;margin:.3rem 0 1.2rem;font-size:.95rem}
+  label{display:block;font-weight:600;font-size:.85rem;margin:.9rem 0 .3rem}
+  input,select{width:100%;padding:.7rem;border:1px solid #cbd5e1;border-radius:10px;font-size:1rem}
+  .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 .8rem}
+  @media(max-width:600px){.grid{grid-template-columns:1fr}}
+  button{width:100%;margin-top:1.3rem;padding:.9rem;border:0;border-radius:12px;background:#0077B6;color:#fff;font-weight:800;font-size:1rem;cursor:pointer}
+  .versoes{display:none;margin-top:1.3rem}
+  .tabs{display:flex;gap:.4rem;margin-bottom:.8rem}
+  .tab{flex:1;padding:.6rem;border:1px solid #cbd5e1;background:#fff;border-radius:10px;font-weight:700;cursor:pointer;font-size:.85rem}
+  .tab.active{background:#0077B6;color:#fff;border-color:#0077B6}
+  .v{display:none;background:#f8fafc;border:1px solid #cbd5e1;border-radius:12px;padding:1.1rem;white-space:pre-wrap;font-size:.88rem;line-height:1.65}
+  .v.active{display:block}
+  .copy{margin-top:.7rem;padding:.6rem 1rem;border:1px solid #0077B6;background:#fff;color:#0077B6;border-radius:10px;font-weight:700;cursor:pointer}
+  .dica{margin-top:1.2rem;background:#ecfeff;border:1px solid #67e8f9;border-radius:12px;padding:1rem;font-size:.9rem}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="https://praia.digital/">🏖️ Praia Digital</a>
+  <a href="https://praia.digital/gerador-descricoes">← Gerador de Descrições</a>
+</header>
+<main>
+  <div class="card">
+    <h1>📢 Anúncio Multi-Portal</h1>
+    <p class="sub">Airbnb quer experiência, OLX quer dados, WhatsApp quer resumo. Um formulário, 3 versões:</p>
+    <div class="grid">
+      <div><label>Tipo</label><select id="tipo"><option>Apartamento</option><option>Casa</option><option>Cobertura</option><option>Studio</option></select></div>
+      <div><label>Cidade</label><input id="cidade" value="Guarujá"></div>
+      <div><label>Quartos</label><input type="number" id="q" value="2"></div>
+      <div><label>Diária (R$)</label><input type="number" id="diaria" value="450"></div>
+      <div><label>Venda (R$)</label><input type="number" id="venda" value="550000"></div>
+      <div><label>Diferencial</label><input id="dif" value="vista para o mar"></div>
+    </div>
+    <button onclick="gerar()">Gerar 3 versões</button>
+    <div class="versoes" id="vers">
+      <div class="tabs">
+        <button class="tab active" onclick="tab(0,this)">🏖️ Airbnb</button>
+        <button class="tab" onclick="tab(1,this)">📋 OLX/ZAP</button>
+        <button class="tab" onclick="tab(2,this)">💬 WhatsApp</button>
+      </div>
+      <div class="v active" id="v0"></div>
+      <div class="v" id="v1"></div>
+      <div class="v" id="v2"></div>
+      <button class="copy" onclick="navigator.clipboard.writeText(document.querySelector('.v.active').textContent);this.textContent='✅ Copiado!'">📋 Copiar versão atual</button>
+    </div>
+    <div class="dica">🏷️ Títulos no <a href="https://praia.digital/gerador-descricoes/titulos-anuncio/" style="color:#0077B6;font-weight:700">Gerador de Títulos</a></div>
+  </div>
+</main>
+<script>
+function gerar(){
+  var g=function(id){return document.getElementById(id).value};
+  var t=g('tipo'), c=g('cidade'), q=g('q'), d=Number(g('diaria')).toLocaleString('pt-BR'), v=Number(g('venda')).toLocaleString('pt-BR'), dif=g('dif');
+  document.getElementById('v0').textContent='🌊 Acorde com '+dif+' em '+c+'\n\n'+t+' aconchegante com '+q+' quarto(s), pensado para suas férias perfeitas. A poucos passos da praia, com tudo que você precisa para relaxar.\n\n✨ O espaço\nAmbiente completo e equipado, ideal para casais e famílias. Check-in autônomo e suporte rápido durante toda a estadia.\n\n📍 A localização\n'+c+' combina praias lindas, ótima gastronomia e fácil acesso.\n\n💰 Diárias a partir de R$ '+d;
+  document.getElementById('v1').textContent=t.toUpperCase()+' '+q+' DORM — '+c.toUpperCase()+' — R$ '+v+'\n\n• '+q+' quarto(s)\n• '+dif+'\n• Localização privilegiada em '+c+'\n• Documentação ok\n\nImóvel em excelente estado, pronto para morar ou investir. Agende sua visita.\n\nTambém disponível para temporada: diárias a partir de R$ '+d+'.';
+  document.getElementById('v2').textContent='🏖️ *'+t+' em '+c+'*\n'+q+' quarto(s) · '+dif+'\n\n💰 Venda: R$ '+v+'\n🗓️ Temporada: R$ '+d+'/diária\n\nFotos e detalhes: me chama aqui! 📲';
+  document.getElementById('vers').style.display='block';
+}
+function tab(i,btn){
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});
+  document.querySelectorAll('.v').forEach(function(v){v.classList.remove('active')});
+  btn.classList.add('active');
+  document.getElementById('v'+i).classList.add('active');
+}
+</script>
+</body>
+</html>
