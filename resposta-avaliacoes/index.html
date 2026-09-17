@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Respondedor de Avaliações — Praia Digital</title>
+<meta name="description" content="Respostas profissionais para avaliações positivas e negativas no Airbnb, Booking e Google.">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,sans-serif}
+  body{background:#f0f9ff;color:#0f172a;min-height:100vh}
+  header{background:linear-gradient(135deg,#0077B6,#00B4D8);color:#fff;padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+  header a{color:#fff;text-decoration:none;font-weight:700}.logo{font-size:1.2rem}
+  main{max-width:680px;margin:2rem auto;padding:0 1rem}
+  .card{background:#fff;border-radius:16px;padding:1.75rem;box-shadow:0 4px 24px rgba(0,60,100,.08)}
+  h1{font-size:1.5rem;color:#0077B6}.sub{color:#64748b;margin:.3rem 0 1.2rem;font-size:.95rem}
+  label{display:block;font-weight:600;font-size:.85rem;margin:.9rem 0 .3rem}
+  input,select,textarea{width:100%;padding:.7rem;border:1px solid #cbd5e1;border-radius:10px;font-size:1rem;font-family:inherit}
+  button{width:100%;margin-top:1.3rem;padding:.9rem;border:0;border-radius:12px;background:#0077B6;color:#fff;font-weight:800;font-size:1rem;cursor:pointer}
+  #out{display:none;margin-top:1.2rem;background:#f8fafc;border:1px solid #cbd5e1;border-radius:12px;padding:1.25rem;white-space:pre-wrap;font-size:.92rem;line-height:1.7}
+  .copy{margin-top:.75rem;padding:.6rem 1rem;border:1px solid #0077B6;background:#fff;color:#0077B6;border-radius:10px;font-weight:700;cursor:pointer;display:none}
+  .dica{margin-top:1rem;background:#ecfeff;border:1px solid #67e8f9;border-radius:12px;padding:1rem;font-size:.9rem}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="https://praia.digital/">🏖️ Praia Digital</a>
+  <a href="https://praia.digital/gerador-descricoes">← Gerador de Descrições</a>
+</header>
+<main>
+  <div class="card">
+    <h1>💬 Respondedor de Avaliações</h1>
+    <p class="sub">Responder avaliações aumenta a confiança de futuros hóspedes — mesmo as negativas.</p>
+    <label>Nome do hóspede</label><input id="nome" value="Carlos">
+    <label>Tipo de avaliação</label>
+    <select id="tipo">
+      <option value="5">⭐⭐⭐⭐⭐ Excelente (5 estrelas)</option>
+      <option value="4">⭐⭐⭐⭐ Boa com ressalvas (4 estrelas)</option>
+      <option value="3">⭐⭐⭐ Mediana (3 estrelas)</option>
+      <option value="1">⭐ Negativa (1–2 estrelas)</option>
+    </select>
+    <label>O que o hóspede mencionou? (opcional)</label>
+    <textarea id="mencao" rows="2" placeholder="Ex: adorou a vista, mas reclamou do Wi-Fi"></textarea>
+    <button onclick="gerar()">Gerar resposta</button>
+    <div id="out"></div>
+    <button class="copy" id="cp" onclick="navigator.clipboard.writeText(document.getElementById('out').textContent);this.textContent='✅ Copiado!'">📋 Copiar resposta</button>
+    <div class="dica">⭐ Gere mais avaliações com o <a href="https://praia.digital/area-anfitriao/pedido-avaliacao/" style="color:#0077B6;font-weight:700">Impulsionador de Avaliações</a></div>
+  </div>
+</main>
+<script>
+function gerar(){
+  var n=document.getElementById('nome').value, t=document.getElementById('tipo').value;
+  var m=document.getElementById('mencao').value.trim();
+  var extra=m?' Sobre o que você mencionou ("'+m+'"), anotamos com carinho.':''
+  var txt;
+  if(t==='5') txt='Muito obrigado, '+n+'! 🌟\n\nFicamos felizes demais com sua avaliação.'+extra+' Trabalhamos todos os dias para que cada estadia seja especial, e receber esse retorno faz tudo valer a pena.\n\nAs portas estão sempre abertas — volte quando quiser! Até a próxima. 🌊';
+  else if(t==='4') txt='Obrigado pela avaliação, '+n+'!\n\nQue bom que a estadia foi boa.'+extra+' Já estamos trabalhando nesse ponto para que sua próxima visita seja 5 estrelas completa.\n\nSerá um prazer recebê-lo(a) novamente! 😊';
+  else if(t==='3') txt=n+', agradecemos o feedback honesto.\n\n'+extra+' Levamos cada comentário a sério e já tomamos providências para melhorar. Sua opinião nos ajuda a evoluir.\n\nEsperamos ter a chance de surpreender você positivamente numa próxima estadia.';
+  else txt=n+', lamentamos sinceramente que sua experiência não tenha correspondido às expectativas.\n\n'+extra+' Isso não reflete nosso padrão de hospedagem. Entramos em contato direto para entender melhor e compensar o ocorrido.\n\nValorizamos seu feedback — ele é essencial para melhorarmos.';
+  document.getElementById('out').textContent=txt;
+  document.getElementById('out').style.display='block';
+  document.getElementById('cp').style.display='inline-block';
+}
+</script>
+</body>
+</html>
