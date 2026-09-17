@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gerador de Títulos de Anúncio — Praia Digital</title>
+<meta name="description" content="Títulos curtos e magnéticos para anúncios de imóveis no Airbnb, Booking, OLX e portais.">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,sans-serif}
+  body{background:#f0f9ff;color:#0f172a;min-height:100vh}
+  header{background:linear-gradient(135deg,#0077B6,#00B4D8);color:#fff;padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+  header a{color:#fff;text-decoration:none;font-weight:700}.logo{font-size:1.2rem}
+  main{max-width:680px;margin:2rem auto;padding:0 1rem}
+  .card{background:#fff;border-radius:16px;padding:1.75rem;box-shadow:0 4px 24px rgba(0,60,100,.08)}
+  h1{font-size:1.5rem;color:#0077B6}.sub{color:#64748b;margin:.3rem 0 1.2rem;font-size:.95rem}
+  label{display:block;font-weight:600;font-size:.85rem;margin:.9rem 0 .3rem}
+  input,select{width:100%;padding:.7rem;border:1px solid #cbd5e1;border-radius:10px;font-size:1rem}
+  button{width:100%;margin-top:1.3rem;padding:.9rem;border:0;border-radius:12px;background:#0077B6;color:#fff;font-weight:800;font-size:1rem;cursor:pointer}
+  .tit{background:#f8fafc;border:1px solid #e2e8f0;border-left:4px solid #0077B6;border-radius:10px;padding:.8rem 1rem;margin-top:.7rem;display:flex;justify-content:space-between;gap:.8rem;align-items:center;font-size:.95rem}
+  .cp{border:1px solid #0077B6;color:#0077B6;background:#fff;border-radius:8px;padding:.3rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;white-space:nowrap}
+  .dica{margin-top:1.2rem;background:#ecfeff;border:1px solid #67e8f9;border-radius:12px;padding:1rem;font-size:.9rem}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="https://praia.digital/">🏖️ Praia Digital</a>
+  <a href="https://praia.digital/gerador-descricoes">← Gerador de Descrições</a>
+</header>
+<main>
+  <div class="card">
+    <h1>🏷️ Títulos de Anúncio que Vendem</h1>
+    <p class="sub">O título é 80% do clique. Gere variações curtas e teste.</p>
+    <label>Tipo de imóvel</label>
+    <select id="tipo"><option>Apartamento</option><option>Casa</option><option>Cobertura</option><option>Studio</option><option>Pousada</option></select>
+    <label>Cidade / bairro</label>
+    <input id="local" value="Praia Grande">
+    <label>Maior diferencial</label>
+    <input id="dif" value="vista para o mar">
+    <button onclick="gerar()">Gerar títulos</button>
+    <div id="out"></div>
+    <div class="dica">✒️ Complete o anúncio no <a href="https://praia.digital/gerador-descricoes" style="color:#0077B6;font-weight:700">Gerador de Descrições</a>.</div>
+  </div>
+</main>
+<script>
+function gerar(){
+  var t=document.getElementById('tipo').value, l=document.getElementById('local').value, d=document.getElementById('dif').value;
+  var ts=[
+    t+' c/ '+d+' em '+l+' 🌊',
+    d.charAt(0).toUpperCase()+d.slice(1)+'! '+t+' em '+l+' — pé na areia',
+    t+' em '+l+' | '+d+' | Wi-Fi rápido',
+    'Seu refúgio em '+l+': '+t.toLowerCase()+' c/ '+d,
+    '⭐ '+t+' 5 estrelas em '+l+' — '+d,
+    t+' em '+l+' a minutos da praia | '+d
+  ];
+  document.getElementById('out').innerHTML=ts.map(function(x){
+    return '<div class="tit"><span>'+x+'</span><button class="cp" onclick="navigator.clipboard.writeText(this.previousSibling.textContent);this.textContent=\'✓\'">Copiar</button></div>';
+  }).join('');
+}
+</script>
+</body>
+</html>
